@@ -1,5 +1,5 @@
 output "virtual_network_id" {
-  value = azurerm_virtual_network.azure_k8s_vn.id
+  value = azurerm_virtual_network.this.id
 }
 
 output "public_subnet_ids" {
@@ -11,5 +11,5 @@ output "private_subnet_ids" {
 }
 
 output "azure_natgw_ip" {
-  value = azurerm_public_ip.ngw-ip.ip_address
+  value = azurerm_public_ip.this.ip_address
 }
