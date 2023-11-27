@@ -87,12 +87,12 @@ resource "azurerm_nat_gateway" "this" {
   )
 }
 
-resource "azurerm_nat_gateway_public_ip_association" "nat-gw-assoc-1" {
+resource "azurerm_nat_gateway_public_ip_association" "this" {
   nat_gateway_id       = azurerm_nat_gateway.this.id
   public_ip_address_id = azurerm_public_ip.this.id
 }
 
-resource "azurerm_subnet_nat_gateway_association" "ngw" {
+resource "azurerm_subnet_nat_gateway_association" "this" {
   for_each       = azurerm_subnet.public_subnet
   subnet_id      = each.value.id
   nat_gateway_id = azurerm_nat_gateway.this.id
@@ -123,7 +123,7 @@ resource "azurerm_network_security_group" "DenyAllInbound" {
   )
 }
 
-resource "azurerm_subnet_network_security_group_association" "nsg-subnet-attach" {
+resource "azurerm_subnet_network_security_group_association" "this" {
   for_each                  = azurerm_subnet.private_subnet
   network_security_group_id = azurerm_network_security_group.DenyAllInbound.id
   subnet_id                 = each.value.id
