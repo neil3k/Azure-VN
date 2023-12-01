@@ -5,16 +5,16 @@ resource "azurerm_resource_group" "this" {
   tags = merge(
     var.common_tags,
     {
-      Name = "${var.name}-virtual-netowrk"
+      Name = "${var.name}-virtual-network"
     }
   )
 }
 
 resource "azurerm_virtual_network" "this" {
-  name                    = "${var.name}-virtual-network"
-  resource_group_name     = azurerm_resource_group.this.name
-  location                = azurerm_resource_group.this.location
-  address_space           = var.vn_cidr_block
+  name                = "${var.name}-virtual-network"
+  resource_group_name = azurerm_resource_group.this.name
+  location            = azurerm_resource_group.this.location
+  address_space       = var.vn_cidr_block
 
   tags = merge(
     var.common_tags,
@@ -79,7 +79,7 @@ resource "azurerm_nat_gateway" "this" {
   location            = azurerm_resource_group.this.location
   sku_name            = "Standard"
 
-    tags = merge(
+  tags = merge(
     var.common_tags,
     {
       Name = "${var.name}-virtual-netowrk"
