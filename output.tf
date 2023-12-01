@@ -13,3 +13,7 @@ output "private_subnet_ids" {
 output "azure_natgw_ip" {
   value = azurerm_public_ip.this.ip_address
 }
+
+output "resource_group_name" {
+  value = azurerm_resource_group.this.name
+}
